@@ -9,17 +9,26 @@ jobs:
    commnet:
       runs-on: ubuntu-latest
       steps:
-        - name: Create comment
-          uses: peter-evans/create-or-update-comment@v3
-          with:
-            issue-number: ${{ github.event.issue.number }}
-            body: |
-              This is a multi-line test comment
-              - With GitHub **Markdown** :sparkles:
-              - Created by [create-or-update-comment][1]
+      - if: contains(github.event.issue.labels.*.name, 'pager-duty')
+        name: custom issues
+        uses: appleboy/discord-action@master
+        with:
+          webhook_id: ${{ secrets.WEBHOOK_ID }}
+          webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+          
+          username: "GitHub Bot"
+          message: "A new commit has been pushed with custom color."
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            This is a multi-line test comment
+            - With GitHub **Markdown** :sparkles:
+            - Created by [create-or-update-comment][1]
 
-              [1]: https://github.com/peter-evans/create-or-update-comment
-            reactions: '+1'   
+            [1]: https://github.com/peter-evans/create-or-update-comment
+          reactions: '+1'   
 
 
 
