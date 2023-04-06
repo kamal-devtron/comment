@@ -17,7 +17,7 @@ jobs:
           webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
           
           username: "GitHub Bot"
-          message: "[ **${{ github.event.issue.title }}** ](${{github.event.issue.html_url}}) \n  > **Description:** ``` ${{ github.event.issue.body }}```"
+          message: " > [ **${{ github.event.issue.title }}** ](${{github.event.issue.html_url}}) \n   **Description:** ``` ${{ github.event.issue.body }}```"
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v3
         with:
