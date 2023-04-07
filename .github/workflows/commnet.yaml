@@ -11,13 +11,12 @@ jobs:
       steps:
       - if: contains(github.event.issue.labels.*.name, 'pager-duty')
         name: custom issues
-        uses: appleboy/discord-action@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
         with:
-          webhook_id: ${{ secrets.WEBHOOK_ID }}
-          webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+          args: 'The project ${{ github.event.issue.title}} has been deployed.'
           
-          username: "GitHub Bot"
-          message: "${{github.event.issue.user.avatar_url}} ${{github.event.issue.user.login}} \n [ **${{ github.event.issue.title }}** ](${{github.event.issue.html_url}}) \n   **Description:**  ${{ github.event.issue.body }}```"
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v3
         with:
