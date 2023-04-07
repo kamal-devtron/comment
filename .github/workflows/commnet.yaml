@@ -15,7 +15,7 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: ' [ **${{ github.event.issue.title}}** ](github.event.issue.user.html_url)'
+          args: ' [ **${{ github.event.issue.title}}** ](github.event.issue.html_url)'
           
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v3
