@@ -14,7 +14,7 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_USERNAME: ${{github.event.issue.user.login}}
-          DISCORD_AVATAR: ${{github.event.issue.user.avtar_url }}
+          DISCORD_AVATAR: ${{github.event.issue.user.avatar_url }}
         uses: Ilshidur/action-discord@master
         with:
           args: ' [ **${{ github.event.issue.title}}** ](github.event.issue.html_url)'
